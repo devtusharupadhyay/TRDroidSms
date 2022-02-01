@@ -29,70 +29,70 @@ namespace TRDroidSms.Droid
 
             LoadApplication(new App());
 
-            PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.Sms>();
+            //PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.Sms>();
 
-            if (status != PermissionStatus.Granted)
-            {
-                var stat = await Permissions.RequestAsync<Permissions.Sms>();
+            //if (status != PermissionStatus.Granted)
+            //{
+            //    var stat = await Permissions.RequestAsync<Permissions.Sms>();
 
-                if (stat == PermissionStatus.Granted)
-                {
-                    ScheduleJob();
-                }
+            //    if (stat == PermissionStatus.Granted)
+            //    {
+            //        ScheduleJob();
+            //    }
 
-            }
-            else
-            {
-                ScheduleJob();
-            }
+            //}
+            //else
+            //{
+            //    ScheduleJob();
+            //}
 
         }
 
 
-        public void ScheduleJob()
-        {
-            //set parameters
-            var jobParameters = new PersistableBundle();
-            jobParameters.PutInt("LoopCount", 11);
+        //public void ScheduleJob()
+        //{
+        //    //set parameters
+        //    var jobParameters = new PersistableBundle();
+        //    jobParameters.PutInt("LoopCount", 11);
 
-            var jobBuilder = this.CreateJobBuilderUsingJobId<DownloadJob>(1);
+        //    var jobBuilder = this.CreateJobBuilderUsingJobId<DownloadJob>(1);
 
-            JobInfo jobInfo;
-            if (Build.VERSION.SdkInt < BuildVersionCodes.N)
-            {
-                jobInfo = jobBuilder
-               .SetExtras(jobParameters)
-               .SetPeriodic(60 * 1000)
-               .SetPersisted(true)
-               .Build();
-            }
-            else
-            {
-                jobInfo = jobBuilder
-                .SetExtras(jobParameters)
-                .SetMinimumLatency(60 * 1000)
-                .SetPersisted(true)
-                .Build();
-            }
-
-
-            var jobScheduler = (JobScheduler)GetSystemService(JobSchedulerService);
-            var scheduleResult = jobScheduler.Schedule(jobInfo);
-
-            if (JobScheduler.ResultSuccess == scheduleResult)
-            {
+        //    JobInfo jobInfo;
+        //    if (Build.VERSION.SdkInt < BuildVersionCodes.N)
+        //    {
+        //        jobInfo = jobBuilder
+        //       .SetExtras(jobParameters)
+        //       .SetPeriodic(60 * 1000)
+        //       .SetPersisted(true)
+        //       .Build();
+        //    }
+        //    else
+        //    {
+        //        jobInfo = jobBuilder
+        //        .SetExtras(jobParameters)
+        //        .SetMinimumLatency(60 * 1000)
+        //        .SetPersisted(true)
+        //        .Build();
+        //    }
 
 
-                //SmsManager.Default.SendTextMessage("+919759369904", null, "Hello World", null, null);
+        //    var jobScheduler = (JobScheduler)GetSystemService(JobSchedulerService);
+        //    var scheduleResult = jobScheduler.Schedule(jobInfo);
 
-                Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Title", "message", "cancel");
+        //    if (JobScheduler.ResultSuccess == scheduleResult)
+        //    {
 
-            }
-            else
-            {
 
-            }
-        }
+        //        //SmsManager.Default.SendTextMessage("+919759369904", null, "Hello World", null, null);
+
+        //        Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Title", "message", "cancel");
+
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

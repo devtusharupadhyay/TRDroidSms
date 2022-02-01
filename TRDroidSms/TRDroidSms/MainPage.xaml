@@ -8,9 +8,10 @@
             <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
 
-        <Button x:Name="SmsButton" Clicked="SmsButton_Clicked"/>
+        <Entry x:Name="PhoneNumber" Placeholder="enter number with country code" Keyboard="Telephone"/>
+
+        <Button x:Name="SmsButton" Text="Start Service" Clicked="SmsButton_Clicked"/>
     </StackLayout>
 
 </ContentPage>

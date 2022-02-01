@@ -19,7 +19,14 @@ namespace TRDroidSms
         {
             try
             {
-               
+                if (string.IsNullOrWhiteSpace(PhoneNumber.Text))
+                {
+                    await DisplayAlert("Validation error", "phone number can not be empty", "OK");
+                    return;
+                }
+
+                var smsService = DependencyService.Get<IStartSmsService>();
+                smsService.ChangeNumberAndStartService(PhoneNumber.Text);
 
             }
             catch (Exception ex)

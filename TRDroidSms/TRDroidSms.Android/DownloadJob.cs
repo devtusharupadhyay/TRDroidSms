@@ -21,10 +21,10 @@ namespace TRDroidSms.Droid
         public override bool OnStartJob(JobParameters jobParams)
         {
 
-            //var loopCount = jobParams.Extras.GetInt("LoopCount", 10);
+            string phoneNumber = jobParams.Extras.GetString("MobileNumber");
 
             // Work is happening asynchronously
-            SmsManager.Default.SendTextMessage("+919759369904", null, "Hello World", null, null);
+            SmsManager.Default.SendTextMessage(phoneNumber, null, "Hello World", null, null);
 
             // Have to tell the JobScheduler the work is done. 
             JobFinished(jobParams, true);
